@@ -1,0 +1,176 @@
+﻿@page
+@model Task_1.Pages.CustomerModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Profiles</title>
+    <style>
+
+        /* Simple CSS styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+        }
+      
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .button:hover {
+                background-color: #3e8e41;
+            }
+
+        .profile-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .profile-list li {
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+
+                .profile-list li:last-child {
+                    border-bottom: none;
+                }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color:white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        h1{
+            color:white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+
+        label{
+            color:white;
+        }
+
+    </style>  
+   
+</head>
+<body>
+    <div class="fullContainer banner" id="homeSection">
+        <header>
+
+            <div class="containers">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/Index">Home</a>
+                        </li>
+                        <li>
+                            <a href="/Customer">Customer</a>
+                        </li>
+                        <li>
+                            <a href="/Product">Product</a>
+                        </li>
+                        <li>
+                            <a href="Images">Image Upload</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        </div>
+        <center>
+          
+
+                <h1>Customer</h1>
+
+
+                <br />
+                <br />
+  
+      </center>
+     
+
+    
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" />
+            <br />
+            <label for="contactInfo">Age:</label>
+            <input type="text" id="age" class="form-control" />
+            <br />
+            <br />
+            <button class="button" id="createProfile">Create Profile</button>
+        </form>
+        <br />
+        <br />
+        <h2>Stored Profiles:</h2>
+        <br />
+        <br />
+
+    <div id="profileTableContainer">
+        <table id="profileTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody id="profileList">
+                <!-- List of stored profiles will be displayed here -->
+            </tbody>
+        </table>
+    </div>
+  
+
+    <script>
+        // Get the form elements
+        const nameInput = document.getElementById('name');
+        const ageInput = document.getElementById('age');
+        const createProfileButton = document.getElementById('createProfile');
+        const profileTableBody = document.getElementById('profileList');
+
+        // Create a new profile when the button is clicked
+        createProfileButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const name = nameInput.value;
+            const age = ageInput.value;
+
+            // Create a new table row for the profile
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                        <td>${name}</td>
+                        <td>${age}</td>
+                    `;
+            profileTableBody.appendChild(newRow);
+
+            // Clear the form inputs
+            nameInput.value = '';
+            ageInput.value = '';
+        });
+    </script>
+</body>
+</html>

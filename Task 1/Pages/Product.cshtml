@@ -1,0 +1,196 @@
+﻿@page
+@model Task_1.Pages.ProductModel
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #3e8e41;
+            }
+
+        .product-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .product-list li {
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+
+                .product-list li:last-child {
+                    border-bottom: none;
+                }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        label {
+            color: white;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="fullContainer banner" id="homeSection">
+        <header>
+
+            <div class="containers">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/Index">Home</a>
+                        </li>
+                        <li>
+                            <a href="/Customer">Customer</a>
+                        </li>
+                        <li>
+                            <a href="/Product">Product</a>
+                        </li>
+                        <li>
+                            <a href="Images">Image Uplaod</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+    </div>
+
+
+    <center>
+
+
+        <h1>Product Information</h1>
+
+
+        <br />
+        <br />
+
+    </center>
+    <form>
+        <div class="form-group">
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" class="form-control" />
+        </div>
+        <br />
+        <br />
+        <button class="btn" id="createProductBtn">Add Product</button>
+    </form>
+    <br />
+    <br />
+
+    <h2>Stored Products:</h2>
+    <br />
+    <br />
+
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="productTable">
+            <!-- Table rows will be added dynamically here -->
+        </tbody>
+    </table>
+
+
+
+    <script>
+        // Get the create product button and product table container
+
+        const ProNameInput = document.getElementById('productName');
+        const DescInput = document.getElementById('description');
+        const PriceInput = document.getElementById('price');
+        const CreateProductButton = document.getElementById('createProductBtn');
+        const productTableBody = document.getElementById('productTable')
+
+        // Add event listener to the create product button
+        CreateProductButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const ProName = ProNameInput.value;
+            const Desc = DescInput.value;
+            const Price = PriceInput.value;
+
+
+            const tableRow = document.createElement('tr');
+            tableRow.innerHTML = `
+                                            <td>${ProName}</td>
+                                            <td>${Desc}</td>
+                                            <td>${Price}</td>
+                                        `;
+
+            // Add the table row to the table body
+            productTableBody.appendChild(tableRow);
+
+
+            //Clear the Form inputs
+            ProNameInput.value = '';
+            DescInput.value = '';
+            PriceInput.value = '';
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+﻿@page
+@model Task_1.Pages.ImagesModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Uploader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #3e8e41;
+            }
+
+        .image-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .image-list li {
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+
+                .image-list li:last-child {
+                    border-bottom: none;
+                }
+
+        img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 1px solid #ddd;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        h2 {
+            color: white;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="fullContainer banner" id="homeSection">
+        <header>
+
+            <div class="containers">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/Index">Home</a>
+                        </li>
+                        <li>
+                            <a href="/Customer">Customer</a>
+                        </li>
+                        <li>
+                            <a href="/Product">Product</a>
+                        </li>
+                        <li>
+                            <a href="Images">Image Upload</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+    </div>
+
+    <center>
+        <h1>Image Uploader</h1>
+        <br />
+        <br />
+    </center>
+
+    <form>
+        <div class="form-group">
+            <label for="image">Select Image:</label>
+            <input type="file" id="image" class="form-control" accept="image/*" />
+        </div>
+        <br />
+        <br />
+        <button class="btn" id="uploadImageBtn">Upload Image</button>
+    </form>
+
+    <br />
+    <br />
+
+    <h2>Uploaded Images:</h2>
+    <br />
+    <br />
+
+    <ul class="image-list" id="imageList">
+        <!-- Image list will be added dynamically here -->
+    </ul>
+
+    <script>
+        // Get the upload image button and image list container
+        const ImageInput = document.getElementById('image');
+        const UploadImageButton = document.getElementById('uploadImageBtn');
+        const ImageList = document.getElementById('imageList');
+
+        // Add event listener to the upload image button
+        UploadImageButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const ImageFile = ImageInput.files[0];
+
+            // Create a new image element
+            const ImageElement = document.createElement('img');
+            ImageElement.src = URL.createObjectURL(ImageFile);
+
+            // Create a new list item element
+            const ListItem = document.createElement('li');
+            ListItem.appendChild(ImageElement);
+
+            // Add the list item to the image list
+            ImageList.appendChild(ListItem);
+
+            // Clear the file input
+            ImageInput.value = '';
+        });
+    </script>
+</body>
+</html>
